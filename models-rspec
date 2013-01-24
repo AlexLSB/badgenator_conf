@@ -1,0 +1,266 @@
+
+BadgeSet
+  should generate badge_set name using source file name (FAILED - 1)
+  should not accept image with invalid extension (FAILED - 2)
+  has a valid factory
+  is invalid without a name and source file (FAILED - 3)
+  should not accept image with invalid mime type (FAILED - 4)
+  database schema
+    should have db column named image of type string
+    should have db column named created_at of type datetime
+    should have many badges
+    should have db column named name of type string of null false
+    should have db column named updated_at of type datetime
+  validations
+    should require name to be set (FAILED - 5)
+    should ensure name has a length between 2 and 50 (FAILED - 6)
+  #source
+    should not create any badges if source is not specified (FAILED - 7)
+    valid file
+      badges.first.surname
+        example at ./spec/models/badge_set_spec.rb:55 (FAILED - 8)
+      badges.first.company
+        example at ./spec/models/badge_set_spec.rb:56 (FAILED - 9)
+      badges.count
+        example at ./spec/models/badge_set_spec.rb:53 (FAILED - 10)
+      badges.first.name
+        example at ./spec/models/badge_set_spec.rb:54 (FAILED - 11)
+      badges.first.profession
+        example at ./spec/models/badge_set_spec.rb:57 (FAILED - 12)
+    invalid file
+      should be a new record (FAILED - 13)
+      should not be valid (FAILED - 14)
+      should not be saved (FAILED - 15)
+      should not create badges (FAILED - 16)
+      should have source errors (FAILED - 17)
+
+Badge
+  has a valid factory (FAILED - 18)
+  database schema
+    should have db column named profession of type string
+    should have db column named surname of type string
+    should have db column named badge_set_id of type integer
+    should have db column named company of type string
+    should belong to badge_set
+    should have db column named name of type string of null false
+    should have db column named updated_at of type datetime
+    should have an index on columns badge_set_id
+    should have db column named created_at of type datetime
+  validations
+    should ensure profession has a length between 3 and 30 (FAILED - 19)
+    should require name to be set (FAILED - 20)
+    should ensure company has a length between 3 and 30 (FAILED - 21)
+    should require badge_set_id to be set (FAILED - 22)
+    should require company to be set (FAILED - 23)
+    should ensure surname has a length between 2 and 30 (FAILED - 24)
+    should ensure name has a length between 2 and 30 (FAILED - 25)
+
+Failures:
+
+  1) BadgeSet should generate badge_set name using source file name
+     Failure/Error: badge_set = FactoryGirl.create(:badge_set, :source, name: nil)
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x53d9960>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:27:in `block (2 levels) in <top (required)>'
+
+  2) BadgeSet should not accept image with invalid extension
+     Failure/Error: FactoryGirl.build(:badge_set,
+       expected valid? to return false, got true
+     # ./spec/models/badge_set_spec.rb:32:in `block (2 levels) in <top (required)>'
+
+  3) BadgeSet is invalid without a name and source file
+     Failure/Error: FactoryGirl.build(:badge_set, name: nil, source: nil).should_not be_valid
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x5601408>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:23:in `block (2 levels) in <top (required)>'
+
+  4) BadgeSet should not accept image with invalid mime type
+     Failure/Error: FactoryGirl.build(:badge_set,
+       expected valid? to return false, got true
+     # ./spec/models/badge_set_spec.rb:38:in `block (2 levels) in <top (required)>'
+
+  5) BadgeSet validations 
+     Failure/Error: it { should validate_presence_of(:name) }
+       Expected errors to include "не может быть пустым" when name is set to nil, got no errors
+     # ./spec/models/badge_set_spec.rb:14:in `block (3 levels) in <top (required)>'
+
+  6) BadgeSet validations 
+     Failure/Error: it { should ensure_length_of(:name).is_at_least(2).is_at_most(50) }
+       Expected errors to include "недостаточной длины (не может быть меньше 2 символов)" when name is set to "x", got no errors
+     # ./spec/models/badge_set_spec.rb:15:in `block (3 levels) in <top (required)>'
+
+  7) BadgeSet#source should not create any badges if source is not specified
+     Failure/Error: badge_set = FactoryGirl.create(:badge_set)
+     ActiveRecord::StatementInvalid:
+       SQLite3::ConstraintException: badge_sets.name may not be NULL: INSERT INTO "badge_sets" ("created_at", "image", "name", "updated_at") VALUES (?, ?, ?, ?)
+     # ./spec/models/badge_set_spec.rb:45:in `block (3 levels) in <top (required)>'
+
+  8) BadgeSet#source valid file badges.first.surname 
+     Failure/Error: let(:badge_set) { FactoryGirl.create :badge_set, :image, :source }
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x3a310a0>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:50:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:51:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:55:in `block (4 levels) in <top (required)>'
+
+  9) BadgeSet#source valid file badges.first.company 
+     Failure/Error: let(:badge_set) { FactoryGirl.create :badge_set, :image, :source }
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x3db1aa0>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:50:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:51:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:56:in `block (4 levels) in <top (required)>'
+
+  10) BadgeSet#source valid file badges.count 
+     Failure/Error: let(:badge_set) { FactoryGirl.create :badge_set, :image, :source }
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x3bd4db8>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:50:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:51:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:53:in `block (4 levels) in <top (required)>'
+
+  11) BadgeSet#source valid file badges.first.name 
+     Failure/Error: let(:badge_set) { FactoryGirl.create :badge_set, :image, :source }
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x3c05268>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:50:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:51:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:54:in `block (4 levels) in <top (required)>'
+
+  12) BadgeSet#source valid file badges.first.profession 
+     Failure/Error: let(:badge_set) { FactoryGirl.create :badge_set, :image, :source }
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x40ecab0>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:50:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:51:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:57:in `block (4 levels) in <top (required)>'
+
+  13) BadgeSet#source invalid file should be a new record
+     Failure/Error: let(:badge_set) { FactoryGirl.build(:badge_set, source: Rack::Test::UploadedFile.new('spec/fixtures/logo.png', 'image/png')) }
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x40f7238>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:61:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:62:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:73:in `block (4 levels) in <top (required)>'
+
+  14) BadgeSet#source invalid file should not be valid
+     Failure/Error: let(:badge_set) { FactoryGirl.build(:badge_set, source: Rack::Test::UploadedFile.new('spec/fixtures/logo.png', 'image/png')) }
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x4103820>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:61:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:62:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:78:in `block (4 levels) in <top (required)>'
+
+  15) BadgeSet#source invalid file should not be saved
+     Failure/Error: let(:badge_set) { FactoryGirl.build(:badge_set, source: Rack::Test::UploadedFile.new('spec/fixtures/logo.png', 'image/png')) }
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x4135098>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:61:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:62:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:65:in `block (5 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:65:in `block (4 levels) in <top (required)>'
+
+  16) BadgeSet#source invalid file should not create badges
+     Failure/Error: let(:badge_set) { FactoryGirl.build(:badge_set, source: Rack::Test::UploadedFile.new('spec/fixtures/logo.png', 'image/png')) }
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x4152c78>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:61:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:62:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:69:in `block (5 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:69:in `block (4 levels) in <top (required)>'
+
+  17) BadgeSet#source invalid file should have source errors
+     Failure/Error: let(:badge_set) { FactoryGirl.build(:badge_set, source: Rack::Test::UploadedFile.new('spec/fixtures/logo.png', 'image/png')) }
+     NoMethodError:
+       undefined method `source=' for #<BadgeSet:0x4b59868>
+     # C:in `object'
+     # ./spec/models/badge_set_spec.rb:61:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:62:in `block (4 levels) in <top (required)>'
+     # ./spec/models/badge_set_spec.rb:83:in `block (4 levels) in <top (required)>'
+
+  18) Badge has a valid factory
+     Failure/Error: FactoryGirl.create(:badge).should be_valid
+     ActiveRecord::StatementInvalid:
+       SQLite3::ConstraintException: badge_sets.name may not be NULL: INSERT INTO "badge_sets" ("created_at", "image", "name", "updated_at") VALUES (?, ?, ?, ?)
+     # C:in `object'
+     # ./spec/models/badge_spec.rb:29:in `block (2 levels) in <top (required)>'
+
+  19) Badge validations 
+     Failure/Error: it { should ensure_length_of(:profession).is_at_least(3).is_at_most(30) }
+       Expected errors to include "недостаточной длины (не может быть меньше 3 символов)" when profession is set to "xx", got no errors
+     # ./spec/models/badge_spec.rb:25:in `block (3 levels) in <top (required)>'
+
+  20) Badge validations 
+     Failure/Error: it { should validate_presence_of(:name) }
+       Expected errors to include "не может быть пустым" when name is set to nil, got no errors
+     # ./spec/models/badge_spec.rb:19:in `block (3 levels) in <top (required)>'
+
+  21) Badge validations 
+     Failure/Error: it { should ensure_length_of(:company).is_at_least(3).is_at_most(30) }
+       Expected errors to include "недостаточной длины (не может быть меньше 3 символов)" when company is set to "xx", got no errors
+     # ./spec/models/badge_spec.rb:23:in `block (3 levels) in <top (required)>'
+
+  22) Badge validations 
+     Failure/Error: it { should validate_presence_of(:badge_set_id) }
+       Expected errors to include "не может быть пустым" when badge_set_id is set to nil, got no errors
+     # ./spec/models/badge_spec.rb:21:in `block (3 levels) in <top (required)>'
+
+  23) Badge validations 
+     Failure/Error: it { should validate_presence_of(:company) }
+       Expected errors to include "не может быть пустым" when company is set to nil, got no errors
+     # ./spec/models/badge_spec.rb:20:in `block (3 levels) in <top (required)>'
+
+  24) Badge validations 
+     Failure/Error: it { should ensure_length_of(:surname).is_at_least(2).is_at_most(30) }
+       Expected errors to include "недостаточной длины (не может быть меньше 2 символов)" when surname is set to "x", got no errors
+     # ./spec/models/badge_spec.rb:24:in `block (3 levels) in <top (required)>'
+
+  25) Badge validations 
+     Failure/Error: it { should ensure_length_of(:name).is_at_least(2).is_at_most(30) }
+       Expected errors to include "недостаточной длины (не может быть меньше 2 символов)" when name is set to "x", got no errors
+     # ./spec/models/badge_spec.rb:22:in `block (3 levels) in <top (required)>'
+
+Finished in 4.94 seconds
+40 examples, 25 failures
+
+Failed examples:
+
+rspec ./spec/models/badge_set_spec.rb:26 # BadgeSet should generate badge_set name using source file name
+rspec ./spec/models/badge_set_spec.rb:31 # BadgeSet should not accept image with invalid extension
+rspec ./spec/models/badge_set_spec.rb:22 # BadgeSet is invalid without a name and source file
+rspec ./spec/models/badge_set_spec.rb:37 # BadgeSet should not accept image with invalid mime type
+rspec ./spec/models/badge_set_spec.rb:14 # BadgeSet validations 
+rspec ./spec/models/badge_set_spec.rb:15 # BadgeSet validations 
+rspec ./spec/models/badge_set_spec.rb:44 # BadgeSet#source should not create any badges if source is not specified
+rspec ./spec/models/badge_set_spec.rb:55 # BadgeSet#source valid file badges.first.surname 
+rspec ./spec/models/badge_set_spec.rb:56 # BadgeSet#source valid file badges.first.company 
+rspec ./spec/models/badge_set_spec.rb:53 # BadgeSet#source valid file badges.count 
+rspec ./spec/models/badge_set_spec.rb:54 # BadgeSet#source valid file badges.first.name 
+rspec ./spec/models/badge_set_spec.rb:57 # BadgeSet#source valid file badges.first.profession 
+rspec ./spec/models/badge_set_spec.rb:72 # BadgeSet#source invalid file should be a new record
+rspec ./spec/models/badge_set_spec.rb:77 # BadgeSet#source invalid file should not be valid
+rspec ./spec/models/badge_set_spec.rb:64 # BadgeSet#source invalid file should not be saved
+rspec ./spec/models/badge_set_spec.rb:68 # BadgeSet#source invalid file should not create badges
+rspec ./spec/models/badge_set_spec.rb:82 # BadgeSet#source invalid file should have source errors
+rspec ./spec/models/badge_spec.rb:28 # Badge has a valid factory
+rspec ./spec/models/badge_spec.rb:25 # Badge validations 
+rspec ./spec/models/badge_spec.rb:19 # Badge validations 
+rspec ./spec/models/badge_spec.rb:23 # Badge validations 
+rspec ./spec/models/badge_spec.rb:21 # Badge validations 
+rspec ./spec/models/badge_spec.rb:20 # Badge validations 
+rspec ./spec/models/badge_spec.rb:24 # Badge validations 
+rspec ./spec/models/badge_spec.rb:22 # Badge validations 
+
+Randomized with seed 24885
+

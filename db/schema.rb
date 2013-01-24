@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121120151935) do
+ActiveRecord::Schema.define(:version => 20130124060557) do
+
+  create_table "badge_sets", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "image"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "badges", :force => true do |t|
+    t.string   "name",         :null => false
+    t.string   "surname"
+    t.string   "company"
+    t.string   "profession"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "badge_set_id"
+  end
+
+  add_index "badges", ["badge_set_id"], :name => "index_badges_on_badge_set_id"
 
   create_table "table", :force => true do |t|
     t.string   "column",     :null => false

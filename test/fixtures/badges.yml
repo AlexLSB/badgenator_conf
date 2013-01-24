@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  surname: MyString
+  company: MyString
+  profession: MyString
+  created_at: 2013-01-24 12:06:32
+  updated_at: 2013-01-24 12:06:32
+  badge_set_id: 1
+
+two:
+  name: MyString
+  surname: MyString
+  company: MyString
+  profession: MyString
+  created_at: 2013-01-24 12:06:32
+  updated_at: 2013-01-24 12:06:32
+  badge_set_id: 1
