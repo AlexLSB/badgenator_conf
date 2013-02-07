@@ -1,0 +1,32 @@
+
+BadgeSetsController
+  routing
+    routes to #destroy
+    routes to #update
+    routes to #edit
+    routes to #index
+    routes to #index with page
+    routes to #create
+    routes to #new
+
+BadgesController
+  routing
+    routes to #destroy
+    routes to #update
+    routes to #edit
+    routes to #index
+    routes to #new
+    routes to #create
+    routes to #show
+    routes to #index with page
+
+WelcomeController
+  routing
+    routes to #index
+    routes to #contacts
+
+Finished in 4.5 seconds
+17 examples, 0 failures
+
+Randomized with seed 62926
+
